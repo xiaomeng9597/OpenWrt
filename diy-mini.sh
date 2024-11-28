@@ -16,6 +16,9 @@ rm -rf feeds/packages/net/smartdns
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
+rm -rf feeds/packages/lang/php7
+rm -rf feeds/packages/lang/php7-pecl-yaf
+rm -rf feeds/packages/lang/php7-pecl-swoole
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
