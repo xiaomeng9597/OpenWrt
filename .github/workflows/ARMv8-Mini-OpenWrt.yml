@@ -18,6 +18,7 @@ env:
   OPENWRT_RELEASE: true
   OPENWRT_TAG: ARMv8_MINI
   TZ: Asia/Shanghai
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
   Build:
@@ -180,7 +181,7 @@ jobs:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
         tag: ${{ env.FIRMWARE_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ env.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is Temporary Firmware for Armvirt 64**
@@ -262,7 +263,7 @@ jobs:
         allowUpdates: true
         removeArtifacts: true
         tag: ${{ env.OPENWRT_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ env.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           **This is OpenWrt Firmware for Armvirt 64**
