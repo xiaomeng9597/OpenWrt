@@ -6,7 +6,7 @@ on:
     - cron: 0 20 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/xiaomeng9597/lede
   REPO_BRANCH: master
   CONFIG_FILE: configs/armv8-plus.config
   DIY_SCRIPT: diy-script.sh
