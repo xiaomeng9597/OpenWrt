@@ -1,0 +1,30 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=12
+
+board_name() {
+    [ -e /tmp/sysinfo/board_name ] && cat /tmp/sysinfo/board_name || echo "generic"
+}
+
+start() {
+    local board=$(board_name)
+    case "$board" in
+        nsy,g68-plus|\
+        nsy,g16-plus)
+            if ! [ -s /etc/config/swconfig_lock ]; then
+cat <<EOF > /etc/config/swconfig_lock
+true / 交换机初始化OK, 4wlan 1lan，最右边端口为wlan
+EOF
+                /etc/init.d/network restart
+                /etc/init.d/dnsmasq restart
+                echo "交换机初始化OK, 4wlan 1lan，最右边端口为wlan"
+            else
+                echo "交换机已初始化过，不再重复执行"
+            fi
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}

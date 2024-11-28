@@ -18,9 +18,6 @@ rm -rf feeds/luci/themes/luci-theme-netgear
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 rm -rf feeds/luci/applications/luci-app-serverchan
-rm -rf feeds/packages/lang/php7
-rm -rf feeds/packages/lang/php7-pecl-yaf
-rm -rf feeds/packages/lang/php7-pecl-swoole
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -132,6 +129,20 @@ wget -P feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal https://xiaom
 cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/bin/
 chmod 755 package/base-files/files/bin/coremark
 chmod 755 package/base-files/files/bin/coremark.sh
+
+
+# 加入nsy_g68-plus初始化网络配置脚本
+cp -f $GITHUB_WORKSPACE/configfiles/swconfig_install package/base-files/files/etc/init.d/swconfig_install
+chmod 755 package/base-files/files/etc/init.d/swconfig_install
+
+# 电工大佬的rtl8367b驱动资源包，暂时使用这样替换
+wget https://github.com/xiaomeng9597/files/releases/download/files/rtl8367b.tar.gz
+tar -xvf rtl8367b.tar.gz
+
+# openwrt主线rtl8367b驱动资源包，暂时使用这样替换
+# wget https://github.com/xiaomeng9597/files/releases/download/files/rtl8367b-openwrt.tar.gz
+# tar -xvf rtl8367b-openwrt.tar.gz
+
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
