@@ -17,6 +17,7 @@ env:
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: Rockchip
   TZ: Asia/Shanghai
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
   Build:
@@ -173,7 +174,7 @@ jobs:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
         tag: ${{ env.FIRMWARE_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ env.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
