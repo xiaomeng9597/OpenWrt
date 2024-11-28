@@ -12,6 +12,7 @@ env:
   REPO_BRANCH: master
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
   Package:
@@ -93,7 +94,7 @@ jobs:
         allowUpdates: true
         removeArtifacts: true
         tag: ARMv8_${{ matrix.version }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ env.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           **This is OpenWrt Firmware for Armvirt 64**
